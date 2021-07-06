@@ -33,10 +33,10 @@ namespace BookCart.Models
         }
         protected internal virtual void OnModelCreating(ModelBuilder modelBuilder) {
 
+            #region Validaciones para las entidades clase: "BOOK"
+            
             modelBuilder.Entity<Book>(entity =>
             {
-
-                #region Validaciones para las entidades clase: "BOOK"
 
                 //1.-
                 entity.Property(e => e.bookID).HasColumnName("BookID");
@@ -65,10 +65,46 @@ namespace BookCart.Models
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-                #endregion
+            });
+
+            #endregion
+
+            #region Validaciones para las entidades clase: "CART"
+
+            modelBuilder.Entity<Cart>(entity =>
+            {
+                //1.-
+                entity.Property(e => e.cartID)
+                    .HasMaxLength(36)
+                    .IsUnicode(false);
+
+                //2.-
+                entity.Property(e => e.createDate)
+                .HasColumnName("datetime");
+
+                //3.-
+                entity.Property(e => e.userID).HasColumnName("UserID");
+            });
+
+            #endregion
+
+            #region Validaciones para las entidades clase: "CARTITEMS"
+
+            modelBuilder.Entity<CartItems>(entity =>
+            {
+                //1.-
+                entity.Property(e => e.cartItemID)
+                 .HasColumnName("PK__CartItem__488B0B000123332D1C");
+
+                //2.-
+                entity.Property(e => e.cartID)
+                 .IsRequired()
+                 .HasMaxLength(36)
+                 .IsUnicode(false);
 
             });
 
+            #endregion
 
         }
     }
