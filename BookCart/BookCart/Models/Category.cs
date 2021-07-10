@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BookCart.Models
 {
-    public class Category
+    public partial class Category
     {
         public int categoryID { get; set; }
         public String categoryName { get; set; }

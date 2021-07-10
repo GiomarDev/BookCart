@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BookCart.Models
 {
-    public class UserRoles
+    public static class UserRoles
     {
 
         public const String Admin = "1";

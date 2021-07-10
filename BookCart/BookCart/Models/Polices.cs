@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BookCart.Models
 {
-    public class Polices
+    public static class Polices
     {
         public static AuthorizationPolicy AdminPolicy()
         {

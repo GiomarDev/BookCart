@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookCart.Models
 {
-    public class BookDBContext : DbContext
+    public partial class BookDBContext : DbContext
     {
         public BookDBContext()
         { 
@@ -27,11 +23,12 @@ namespace BookCart.Models
         public virtual DbSet<UserMaster> UserMaster { get; set; }
         public virtual DbSet<UserType> UserType { get; set; }
 
-        protected internal virtual void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
-        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
         }
-        protected internal virtual void OnModelCreating(ModelBuilder modelBuilder) {
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
 
             #region Validaciones para las entidades clase: "BOOK"
             
@@ -106,6 +103,143 @@ namespace BookCart.Models
 
             #endregion
 
+            #region Validaciones para las entidades clase: "CATEGORY"
+
+            modelBuilder.Entity<Category>(entity =>
+            {
+                //1.-
+                entity.Property(e => e.categoryID)
+                 .HasColumnName("PK__Categori__1924578692DVBR23");
+
+                //2.-
+                entity.Property(e => e.categoryID).HasColumnName("CategoryID");
+
+                //3.-
+                entity.Property(e => e.categoryName)
+                 .IsRequired()
+                 .HasMaxLength(20)
+                 .IsUnicode(false);
+
+            });
+
+            #endregion
+
+            #region Validaciones para las entidades clase: "CUSTOMERORDERDETAIL"
+
+            modelBuilder.Entity<CustomerOrderDetails>(entity =>
+            {
+                //1.-
+                entity.Property(e => e.orderDetailsID)
+                 .HasColumnName("PK__Customer_9DD74DBD221B");
+
+                //2.-
+                entity.Property(e => e.orderID)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                //3.-
+                entity.Property(e => e.price).HasColumnType("decimal(10, 2)");
+
+            });
+
+            #endregion
+
+            #region Validaciones para las entidades clase: "CUSTOMERORDERS"
+
+            modelBuilder.Entity<CustomerOrders>(entity =>
+            {
+                //1.-
+                entity.Property(e => e.orderID)
+                 .HasColumnName("PK__Customer_C359FJDLKSE2");
+
+                //2.-
+                entity.Property(e => e.orderID)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                //3.-
+                entity.Property(e => e.cartTotal).HasColumnType("decimal(10, 2)");
+
+                //4.-
+                entity.Property(e => e.createDate).HasColumnType("datetime");
+
+                //5.-
+                entity.Property(e => e.userID).HasColumnName("UserID");
+
+            });
+
+            #endregion
+
+            #region Validaciones para las entidades clase: "USERMASTER"
+
+            modelBuilder.Entity<UserMaster>(entity =>
+            {
+                //1.-
+                entity.Property(e => e.userID)
+                 .HasColumnName("PK__UserMast__174820DGN89F");
+
+                //2.-
+                entity.Property(e => e.userID).HasColumnName("UserID");
+
+                //3.-
+                entity.Property(e => e.firstName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                //4.-
+                entity.Property(e => e.gender)
+                    .IsRequired()
+                    .HasMaxLength(6)
+                    .IsUnicode(false);
+
+                //5.-
+                entity.Property(e => e.lastName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                //6.-
+                entity.Property(e => e.password)
+                    .IsRequired()
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                //7.-
+                entity.Property(e => e.userTypeID).HasColumnName("UserType");
+
+                //8.-
+                entity.Property(e => e.userName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+            });
+
+            #endregion
+
+            #region Validaciones para las entidades clase: "USERTYPE"
+
+            modelBuilder.Entity<UserType>(entity =>
+            {
+                //1.-
+                entity.Property(e => e.userTypeID)
+                 .HasColumnName("UserTypeID");
+
+                //2.-
+                entity.Property(e => e.userTypeName)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+            });
+
+            #endregion
+
+            OnModelCreatingPartial(modelBuilder);
         }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

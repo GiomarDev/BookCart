@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace BookCart.Models
 {
-    public class Book
+    public partial class Book
     {
-    
+
         public int bookID { get; set; }
         public String title { get; set; }
         public String autor { get; set; }

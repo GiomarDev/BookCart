@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BookCart.Models
 {
-    public class UserType
+    public partial class UserType
     {
 
         public int userTypeID { get; set; }
