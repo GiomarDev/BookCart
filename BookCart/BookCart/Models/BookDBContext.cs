@@ -35,32 +35,26 @@ namespace BookCart.Models
             modelBuilder.Entity<Book>(entity =>
             {
 
-                //1.-
                 entity.Property(e => e.bookID).HasColumnName("BookID");
 
-                //2.-
                 entity.Property(e => e.autor)
-                .HasMaxLength(100)
-                .IsUnicode(false);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                //3.-
                 entity.Property(e => e.category)
-                .IsRequired()
-                .HasMaxLength(20)
-                .IsUnicode(false);
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
-                //4.-
                 entity.Property(e => e.coverFileName)
-                .HasMaxLength(100)
-                .IsUnicode(false);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                //5.-
-                entity.Property(e => e.price).HasColumnName("decimal(10, 2)");
+                entity.Property(e => e.price).HasColumnType("decimal(10, 2)");
 
-                //6.-
                 entity.Property(e => e.title)
-                .HasMaxLength(100)
-                .IsUnicode(false);
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
             });
 
@@ -89,16 +83,13 @@ namespace BookCart.Models
 
             modelBuilder.Entity<CartItems>(entity =>
             {
-                //1.-
-                entity.Property(e => e.cartItemID)
-                 .HasColumnName("PK__CartItem__488B0B000123332D1C");
+                entity.HasKey(e => e.cartItemID)
+                    .HasName("PK__CartItem__488B0B0AA0297D1C");
 
-                //2.-
                 entity.Property(e => e.cartID)
-                 .IsRequired()
-                 .HasMaxLength(36)
-                 .IsUnicode(false);
-
+                    .IsRequired()
+                    .HasMaxLength(36)
+                    .IsUnicode(false);
             });
 
             #endregion
@@ -128,17 +119,14 @@ namespace BookCart.Models
 
             modelBuilder.Entity<CustomerOrderDetails>(entity =>
             {
-                //1.-
-                entity.Property(e => e.orderDetailsID)
-                 .HasColumnName("PK__Customer_9DD74DBD221B");
+                entity.HasKey(e => e.orderDetailsID)
+                    .HasName("PK__Customer__9DD74DBD81D9221B");
 
-                //2.-
                 entity.Property(e => e.orderID)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                //3.-
                 entity.Property(e => e.price).HasColumnType("decimal(10, 2)");
 
             });
@@ -149,22 +137,17 @@ namespace BookCart.Models
 
             modelBuilder.Entity<CustomerOrders>(entity =>
             {
-                //1.-
-                entity.Property(e => e.orderID)
-                 .HasColumnName("PK__Customer_C359FJDLKSE2");
+                entity.HasKey(e => e.orderID)
+                    .HasName("PK__Customer__C3905BCF96C8F1E7");
 
-                //2.-
                 entity.Property(e => e.orderID)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                //3.-
                 entity.Property(e => e.cartTotal).HasColumnType("decimal(10, 2)");
 
-                //4.-
                 entity.Property(e => e.createDate).HasColumnType("datetime");
 
-                //5.-
                 entity.Property(e => e.userID).HasColumnName("UserID");
 
             });
@@ -175,41 +158,33 @@ namespace BookCart.Models
 
             modelBuilder.Entity<UserMaster>(entity =>
             {
-                //1.-
-                entity.Property(e => e.userID)
-                 .HasColumnName("PK__UserMast__174820DGN89F");
+                entity.HasKey(e => e.userID)
+                    .HasName("PK__UserMast__1788CCAC2694A2ED");
 
-                //2.-
                 entity.Property(e => e.userID).HasColumnName("UserID");
 
-                //3.-
                 entity.Property(e => e.firstName)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                //4.-
                 entity.Property(e => e.gender)
                     .IsRequired()
                     .HasMaxLength(6)
                     .IsUnicode(false);
 
-                //5.-
                 entity.Property(e => e.lastName)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                //6.-
                 entity.Property(e => e.password)
                     .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false);
 
-                //7.-
-                entity.Property(e => e.userTypeID).HasColumnName("UserType");
+                entity.Property(e => e.userTypeID).HasColumnName("UserTypeID");
 
-                //8.-
                 entity.Property(e => e.userName)
                     .IsRequired()
                     .HasMaxLength(20)
