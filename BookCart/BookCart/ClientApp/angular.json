@@ -23,7 +23,30 @@
             "assets": ["src/assets"],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.scss",
+              {
+                "input": "src/main.scss"
+              },
+              {
+                "lazy": true,
+                "input": "src/assets/pink-bluegrey.css",
+                "bundleName": "pink-bluegrey"
+              },
+              {
+                "lazy": true,
+                "input": "src/assets/deeppurple-amber.css",
+                "bundleName": "deeppurple-amber"
+              },
+              {
+                "lazy": true,
+                "input": "src/assets/indigo-pink.css",
+                "bundleName": "indigo-pink"
+              },
+              {
+                "lazy": true,
+                "input": "src/assets/purple-green.css",
+                "bundleName": "purple-green"
+              }
             ],
             "scripts": []
           },
