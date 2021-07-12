@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BookCart.Models;
 using Microsoft.EntityFrameworkCore;
+using BookCart.Interfaces;
+using BookCart.DataAccess;
 
 namespace BookCart
 {
@@ -24,6 +26,12 @@ namespace BookCart
             //Cadena de Conexion
             services.AddDbContext<BookDBContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
+            //Interfaz implementada con el DataAccess
+            //Patrón Repository
+            services.AddTransient<IBookServices, BookDataAccessLayer>();
+            services.AddTransient<ICartServices, CartDataAccessLayer>();
+            services.AddTransient<IOrderServices, OrderDataAccessLayer>();
+            services.AddTransient<IUserServices, UserDataAccessLayer>();
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
